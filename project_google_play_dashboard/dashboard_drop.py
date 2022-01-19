@@ -1,7 +1,7 @@
 import pandas as pd
-import plotly.express as px  # (version 4.7.0 or higher)
+import plotly.express as px
 import plotly.graph_objects as go
-from dash import Dash, dcc, html, Input, Output  # pip install dash (version 2.0.0 or higher)
+from dash import Dash, dcc, html, Input, Output
 
 
 
@@ -61,9 +61,8 @@ app.layout = html.Div([
 
 ])
 
+################################################################
 
-# ------------------------------------------------------------------------------
-# Connect the Plotly graphs with Dash Components
 @app.callback(
     [Output(component_id='output_container', component_property='children'),
      Output(component_id='graph1', component_property='figure')],
@@ -75,16 +74,12 @@ def update_graph(option_slctd,option_slctd2):
     print(option_slctd,option_slctd2)
     print(type(option_slctd),type(option_slctd2))
 
-    #### dunno why "container" variable outputs to the dashboard, or how that works???
-    container=''
-    #container = "The year chosen by user was: {}\n Visualizing: {}".format(option_slctd,option_slctd2)
-    
+    container=''    
     
     dff = df.copy()
     dff = dff[dff["year"] == option_slctd]
-    #dff = dff[dff["Affected by"] == "Varroa_mites"]
     Y=option_slctd2
-    # Plotly Express
+
     fig = px.line(
         data_frame=dff,
         x='at',
